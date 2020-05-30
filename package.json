@@ -1,0 +1,23 @@
+{
+  "name": "imessage-to-android",
+  "version": "1.0.0",
+  "description": "imessage gate to android",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkvvltra/imessage-to-android.git"
+  },
+  "author": "pepero tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkvvltra/imessage-to-android/issues"
+  },
+  "homepage": "https://github.com/mkvvltra/imessage-to-android#readme",
+  "devDependencies": {
+    "open": "^7.0.4",
+    "sqlite3": "^4.2.0"
+  }
+}

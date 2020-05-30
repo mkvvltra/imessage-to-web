@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>imessage-to-http</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="header">
+    <span id="logo">
+        imessage-to-http
+    </span>
+    <span id="author">
+        by pepero
+    </span>
+    <select name="chatrooms" id="chatrooms"></select>
+</div>
+<div id="messagesContainer"></div>
+<div id="footer">
+    <div id="pollingCounter">X</div>
+    <input id="messageText">
+    <button onclick="sendMessage()">Send</button>
+</div>
+</body>
+</html>
+<script type="module" src="js/getChatrooms.js"></script>
+<script type="module" src="index.js"></script>
