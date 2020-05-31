@@ -10,7 +10,7 @@ const messageBody = ({ text, message_date, id, is_from_me }) => `
         ${is_from_me ? 'self' : id}
     </div>
     <span class="messageContainer__text">
-        ${text}
+        ${text && text.replace(/(<([^>]+)>)/ig,"")}
     </span>
 `
 

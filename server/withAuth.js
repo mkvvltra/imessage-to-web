@@ -1,19 +1,11 @@
-const getPwd = () => {
-  const pwdArr = process.argv.filter(arg => arg.includes('-p'))
-
-  if(!pwdArr.length){
-    return null
-  }else{
-    return pwdArr[0].split('=')[1]
-  }
-}
+const { getArg } = require('./utils')
 
 exports.withAuth = fn => (req, res) => {
-  const pwd = getPwd()
+  const pwd = getArg('-p')
   if(pwd){
     const { authorization } = req.headers
     if(pwd !== authorization){
-      res.send(401)
+      res.sendStatus(401)
       return
     }
   }

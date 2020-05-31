@@ -6,7 +6,7 @@ import MessagesManager from './js/MessagesManager'
 import { setChatrooms, getCurrentChatroom } from './js/chatrooms'
 
 const main = async () => {
-  // await APIClient.signIn()
+  await APIClient.signIn()
 
   await setChatrooms()
   await MessagesManager.setMessages(getCurrentChatroom())
