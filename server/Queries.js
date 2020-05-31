@@ -10,6 +10,7 @@ const Queries = {
     message.is_from_me,
     message.handle_id,
     message.cache_roomnames,
+    message.guid,
     chat.chat_identifier,
     handle.id
   FROM

@@ -14,9 +14,15 @@ app.use(bodyParser.urlencoded())
 const main = async () => {
   await DBClient.init()
 
+  console.log(await DBClient.execQuery(Queries.getAllHandles))
+
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'))
   })
+
+  app.get('/signIn', withAuth(async (req, res) => {
+    res.send(202)
+  }))
 
   app.get('/chatrooms', withAuth(async (req, res) => {
     let chatrooms = await DBClient.execQuery(Queries.getChatrooms)
@@ -31,6 +37,8 @@ const main = async () => {
 
   app.post('/sendMessage', withAuth(async (req, res) => {
     const { recipient, value } = req.body
+
+    if(!recipient || !value) res.send(400)
 
     exec(getScript(recipient, value), error => {
       if (error) {

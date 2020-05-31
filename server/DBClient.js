@@ -3,10 +3,10 @@ const sqlite3 = require('sqlite3').verbose()
 let username = process.env.USER || ""
 
 const DBClient = function() {
-  this.db = null
+  let db = null
 
   const init = async () => new Promise(((resolve, reject) => {
-    this.db = new sqlite3.Database(`/Users/${username}/Library/Messages/chat.db`, async err => {
+    db = new sqlite3.Database(`/Users/${username}/Library/Messages/chat.db`, async err => {
       if (err) {
         reject(err.message)
       }
@@ -17,7 +17,7 @@ const DBClient = function() {
   const getDbInstance = () => this.db
 
   const execQuery = (query, parse = arg => arg) => new Promise((resolve, reject) => {
-    this.db.all(query, (err, all) => {
+    db.all(query, (err, all) => {
       if (err) {
         reject(err.message)
       }

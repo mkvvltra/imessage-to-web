@@ -1,7 +1,8 @@
 body {
-    background-image: url("beanstalk.png");
+    background-image: url("assets/beanstalk.png");
     background-color: #144234;
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
 }
 
 #header {
@@ -36,6 +37,7 @@ body {
 }
 
 .messageContainer {
+    align-self: flex-start;
     margin-bottom: 1rem;
     max-width: 20rem;
     padding: 1rem;
@@ -43,11 +45,13 @@ body {
     background-color: #375C51;
     word-break: break-word;
     border-radius: .5rem;
+    animation: enter-left .5s normal forwards ease-in-out;
 }
 
 .messageContainer--self {
     align-self: flex-end;
     background-color: #2B8F71;
+    animation: enter-right .5s normal forwards ease-in-out;
 }
 
 .messageContainer__meta {
@@ -73,6 +77,27 @@ body {
     margin-right: .5rem;
 }
 
+@keyframes enter-left {
+    from {
+        opacity: 0;
+        margin-left: -3rem;
+    }
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+
+@keyframes enter-right {
+    from {
+        opacity: 0;
+        margin-right: -3rem;
+    }
+    to {
+        opacity: 1;
+        margin-right: 0;
+    }
+}
 
 
 
