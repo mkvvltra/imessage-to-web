@@ -1,9 +1,10 @@
 exports.getArg = argName => {
-  const pwdArr = process.argv.filter(arg => arg.includes(argName))
+  const argArr = process.argv.slice(2).filter(arg => arg.includes(argName))
 
-  if(!pwdArr.length){
+  if(!argArr.length){
     return null
   }else{
-    return pwdArr[0].split('=')[1]
+    const [ key, value ] = argArr[0].split('=')
+    return value || !!key
   }
 }

@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const ngrok = require('ngrok')
 const { exec } = require('child_process')
 const { DBClient } = require('./server/DBClient')
 const { Queries } = require('./server/Queries')
@@ -41,20 +42,29 @@ const main = async () => {
 
     exec(getScript(recipient, value), error => {
       if (error) {
+        console.log(error)
         res.send('error!')
       }
     })
 
-    res.send('message sent!')
+    res.sendStatus(200)
   }))
 
   const server = app.listen(8000, () => {
-    console.log('imessage-to-http on 8000!')
+    console.log('imessage-to-web on 8000!')
   })
 
-  if(!getArg('-p')){
+  if(typeof getArg('-p') !== 'string'){
     console.log(`Please define passphrase in arg, eg; node index.js -p='passphrase'`)
     server.close()
+  }
+
+  if(getArg('-t')) {
+    const url = await ngrok.connect({
+      addr: 8000
+    })
+    if(!url) return
+    console.log(`imessage-to-web available at: ${url}`)
   }
 }
 
