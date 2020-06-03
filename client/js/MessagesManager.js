@@ -14,9 +14,12 @@ const messageBody = ({ text, message_date, id, is_from_me }) => `
     </span>
 `
 
+const getChatGUID = message => message['guid:1']
+
 const MessagesManager = function () {
   const container = document.getElementById('messagesContainer')
   let currentMessages = []
+  let currentChatGUID = null
 
   const appendToContainer = messages => {
     messages.forEach(({ is_from_me, ...row }) => {
@@ -32,6 +35,8 @@ const MessagesManager = function () {
 
     const res = get(await APIClient.fetchData(`/messages?id=${encodeURIComponent(id)}`), 'parsedResponse')
     if (!Array.isArray(res)) return
+
+    currentChatGUID = getChatGUID(res[0])
 
     appendToContainer(res)
 
@@ -58,10 +63,8 @@ const MessagesManager = function () {
 
     if(inputValue === "") return
 
-    let recipient = `iMessage;-;${getCurrentChatroom()}`
-
     const res = await APIClient.postData('/sendMessage', {
-      recipient,
+      recipient: currentChatGUID,
       value: inputValue
     })
 

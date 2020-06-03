@@ -1,5 +1,5 @@
 const Queries = {
-  getChatrooms: 'SELECT chat_identifier, display_name FROM chat',
+  getChatrooms: 'SELECT chat_identifier, display_name, guid FROM chat',
   getAllMessages: `SELECT * FROM message`,
   getAllHandles: `SELECT * FROM handle`,
   getMessages: id => `
@@ -11,7 +11,7 @@ const Queries = {
     message.handle_id,
     message.cache_roomnames,
     message.guid,
-    chat.chat_identifier,
+    chat.guid,
     handle.id
   FROM
     chat
